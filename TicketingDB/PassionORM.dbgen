@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<database devcontext="Development" livecontext="Live" dbtype="SqlServer" name="PassionORM" connectionstring="Data Source=localhost;Initial Catalog=TicketingSystem;Integrated Security=True" onsave="Generate" onbuild="Generate" genmode="OnChange" dbgenversion="3">
+    <class id="Categories" enum="Yes" />
+    <class id="Events" dynamic="Yes" />
+    <class id="Requests" dynamic="Yes" />
+    <class id="Users" dynamic="Yes" />
+</database>

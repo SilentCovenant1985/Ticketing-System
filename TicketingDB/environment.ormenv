@@ -1,0 +1,11 @@
+<root version="2.00">
+	<databases>
+		<database context="Development" provider="0" tableprefix="" connectionstring="Data Source=localhost;Initial Catalog=PassionORM;Integrated Security=SSPI;" />
+		<database context="Live" provider="0" tableprefix="" connectionstring="Data Source=localhost;Initial Catalog=PassionORM;Integrated Security=SSPI;" />
+		<logging type="EventLog" />
+	</databases>
+	<providers>
+    <provider id="0" name="SQLServer" dialectname="TSQL" invariantname="System.Data.SqlClient"  isolationlevel="Snapshot"  />
+    <provider id="1" name="MySQL" dialectname="MySQL" invariantname="MySql.Data.MySqlClient" isolationlevel="ReadCommitted" />
+	</providers>
+</root>

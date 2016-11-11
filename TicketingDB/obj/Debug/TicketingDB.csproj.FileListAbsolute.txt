@@ -1,0 +1,3 @@
+D:\_development\_Projects\TicketingSystem\TicketingDB\obj\Debug\TicketingDB.PassionORM.Localization.resources
+D:\_development\_Projects\TicketingSystem\TicketingDB\obj\Debug\TicketingDB.csproj.GenerateResource.Cache
+D:\_development\_Projects\TicketingSystem\TicketingDB\obj\Debug\TicketingDB.csprojResolveAssemblyReference.cache

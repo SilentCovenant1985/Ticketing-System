@@ -1,0 +1,5 @@
+
+WARNING: Class Categories does not have a TimeStamp member, locking and concurrency is not handled by the Framework
+WARNING: Class Events does not have a TimeStamp member, locking and concurrency is not handled by the Framework
+WARNING: Class Requests does not have a TimeStamp member, locking and concurrency is not handled by the Framework
+WARNING: Class Users does not have a TimeStamp member, locking and concurrency is not handled by the Framework
