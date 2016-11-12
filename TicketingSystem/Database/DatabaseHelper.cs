@@ -36,7 +36,7 @@ namespace TicketingSystem.Database
 
         public DatabaseHelper()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;             
         }
         public DatabaseHelper(string connectionString)
         {
