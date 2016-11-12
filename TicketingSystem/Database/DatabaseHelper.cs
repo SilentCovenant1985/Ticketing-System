@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,7 +36,7 @@ namespace TicketingSystem.Database
 
         public DatabaseHelper()
         {
-
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
         public DatabaseHelper(string connectionString)
         {

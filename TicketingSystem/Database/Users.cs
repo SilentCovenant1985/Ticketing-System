@@ -16,11 +16,8 @@ namespace TicketingSystem.Database
             get
             {
 
-                if (_dbHelper == null)
-                {
-                    string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                    _dbHelper = new DatabaseHelper(connectionString);
-                }
+                if (_dbHelper == null)             
+                    _dbHelper = new DatabaseHelper();
 
                 return _dbHelper;
             }
