@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AllTicketsList</h2>
+<h2>Tickets</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EditTicket","Ticket")
+    @Html.ActionLink("Create New", "CreateTicket","Ticket")
 </p>
 <table class="table">
     <tr>
@@ -54,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Requester)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Create", new { id = item.RequestID}) 
+            @Html.ActionLink("Edit", "EditTicket", "Ticket", new { id = item.RequestID}) 
         </td>
     </tr>
 }

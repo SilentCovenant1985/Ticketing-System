@@ -11,42 +11,6 @@ namespace TicketingSystem.Controllers
 {
     public class AccountController : BaseController
     {
-        [HttpPost]
-        public ActionResult Login(Login login, string returnUrl)
-        {
-            Database.User user = Database.User.Get(login.UserName, login.Password);
-            login.Valid = user != null;
-
-            if (login.Valid)
-            {
-                LoginUser = user.Name;
-                UserID = user.UserID.ToString();
-
-                if (string.IsNullOrEmpty(returnUrl))
-                    Redirect("/Home/Index");
-                else
-                    Redirect(returnUrl);
-            }
-            else
-            {
-                ModelState.AddModelError("Username", "Incorrect credentials.");
-            }
-
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Login(string returnUrl)
-        {
-            return View();
-        }
-
-        public ActionResult LogOff()
-        {
-            LoginUser = "GUEST";
-            return RedirectToAction("Index", "Home");
-;        }
-
         [HttpGet]
         public ActionResult Register()
         {
@@ -59,6 +23,52 @@ namespace TicketingSystem.Controllers
             user.Save();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult Login(string returnUrl)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Login login, string returnUrl)
+        {
+            Database.User user = Database.User.Get(login.UserName, login.Password);
+            login.Valid = user != null;
+
+            if (login.Valid)
+            {
+                LoginUser = user.Name;
+                UserID = user.UserID.ToString();
+
+                if (string.IsNullOrEmpty(returnUrl) == false)
+                    RedirectToLocal(returnUrl);
+            }
+            else
+            {
+                ModelState.AddModelError("Username", "Incorrect credentials.");
+            }
+
+            return View();
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult LogOff()
+        {
+            LoginUser = "GUEST";
+            return RedirectToAction("Index", "Home");
+;        }
 
         public User FindUser(int id)
         {

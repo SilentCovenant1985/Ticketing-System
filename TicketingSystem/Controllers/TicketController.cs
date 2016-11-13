@@ -34,6 +34,7 @@ namespace TicketingSystem.Controllers
         }
 
         [HttpPost]
+        [Route("Ticket/Edit/{id}")]
         public ActionResult EditTicket(int id)
         {
             DB.Request request = DB.Request.Get(id);
