@@ -48,7 +48,6 @@ namespace TicketingSystem.Database
             }
         }
 
-
         public int UserID { get; set; }
 
         public string Requester
@@ -82,6 +81,15 @@ namespace TicketingSystem.Database
         {
             string sql = "INSERT INTO [dbo].[Requests]([TrackingNumber],[InitialDescription],[RequestStatus],[DateSubmitted],[AttachmentFileName],[Users_UserID],[Categories_CategoryID])" +
                          string.Format("VALUES('{0}','{1}','{2}','{3}','{4}',{5},{6})", TrackingNumber, InitialDescription, RequestStatus, DateSubmitted, AttachmentFileName, UserID, CategoryID);
+
+            DBHelper.Execute(sql);
+        }
+
+        public void Update(int id)
+        {
+            string sql = string.Format("UPDATE [dbo].[Requests] {0}", 
+            string.Format("SET [TrackingNumber]='{0}',[InitialDescription]='{1}',[RequestStatus]='{2}',[DateSubmitted]='{3}',[AttachmentFileName]='{4}' WHERE RequestId = {5}", 
+                           TrackingNumber, InitialDescription, RequestStatus, DateSubmitted, AttachmentFileName,id));
 
             DBHelper.Execute(sql);
         }

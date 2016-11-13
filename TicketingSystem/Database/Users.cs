@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace TicketingSystem.Database
 
         public string Company { get; set; }
 
+        [DefaultValue("Normal User")]
         public string UserType { get; set; }
 
         public bool IsValid()
@@ -61,10 +63,10 @@ namespace TicketingSystem.Database
             DBHelper.Execute(sql);
         }
 
-        public void Update()
+        public void Update(int id)
         {
-            string sql = string.Format("UPDATE [dbo].[Users] SET [UserID] = {0}, [Username] = {1},[Password] = {2},[Name] = {3},[Email] = {4},[Phone] = {5},[Company] = {6}, [UserType] = {7}",
-                                        Username, Password, Name, Email, Phone, Company, UserType);
+            string sql = string.Format("UPDATE [dbo].[Users] SET [Username] = '{0}',[Password] = '{1}',[Name] = '{2}',[Email] = '{3}',[Phone] = '{4}',[Company] = '{5}', [UserType] = '{6}' WHERE UserID = {7}",
+                                        Username, Password, Name, Email, Phone, Company, UserType, id);
 
             DBHelper.Execute(sql);
         }

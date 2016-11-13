@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace TicketingSystem.Database
 {
@@ -16,7 +17,5 @@ namespace TicketingSystem.Database
         public string Password { get; set; }
 
         public bool Valid { get; set; }
-
-        public bool Attempted { get; set; }
     }
 }

@@ -14,16 +14,16 @@ namespace TicketingSystem
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Register",
+                url: "Register",
+                defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional }
+
+);
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-               name: "Register",
-               url: "Register",
-               defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional }
-           );
         }
     }
 }

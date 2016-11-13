@@ -54,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Requester)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditTicket", "Ticket", new { id = item.RequestID}) 
+            @Html.ActionLink("Edit", "EditTicket", new { id = item.RequestID}) 
         </td>
     </tr>
 }

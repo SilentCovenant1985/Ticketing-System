@@ -10,8 +10,7 @@ using DB = TicketingSystem.Database;
 namespace TicketingSystem.Controllers
 {
     public class TicketController : BaseController
-    {
-        [HttpGet]
+    { 
         public ActionResult CreateTicket()
         {
             if (LoginUser == "GUEST")
@@ -30,15 +29,22 @@ namespace TicketingSystem.Controllers
             request.UserID = int.Parse(UserID);
             request.Save();
 
-            return RedirectToAction("Index", "Home");       
+            return RedirectToAction("AllTickets");       
         }
 
-        [HttpPost]
-        [Route("Ticket/Edit/{id}")]
         public ActionResult EditTicket(int id)
         {
             DB.Request request = DB.Request.Get(id);
             return View(request);
+        }
+
+        [HttpPost]
+        public ActionResult EditTicket(Request request)
+        {
+            request.CategoryID = int.Parse(request.TicketCategory);
+            request.Update(request.RequestID);
+
+            return RedirectToAction("AllTickets");
         }
 
         public ActionResult FindTicket(string trackingNumber)

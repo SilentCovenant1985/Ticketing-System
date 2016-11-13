@@ -11,10 +11,7 @@ namespace TicketingSystem.Controllers
     {
         public ActionResult Index()
         {
-            if (LoginUser == "GUEST")
-                return View();
-            else
-                return RedirectToAction("AllTickets", "Ticket");
+            return View();
         }
 
         public ActionResult About()

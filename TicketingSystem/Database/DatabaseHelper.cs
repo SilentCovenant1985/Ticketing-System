@@ -38,18 +38,6 @@ namespace TicketingSystem.Database
         {
             _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;             
         }
-        public DatabaseHelper(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-        public DatabaseHelper(string server, string databaseName)
-        {
-            ConnectionString = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=SSPI",server,databaseName);
-        }
-        public DatabaseHelper(string server, string databaseName, string userName, string password)
-        {
-            ConnectionString = string.Format("Data Source={0};Initial Catalog={1};userid = {2}; password={3}", server, databaseName, userName, password);
-        }
 
         public bool Execute(string sql)
         {

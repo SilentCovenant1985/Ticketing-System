@@ -11,7 +11,6 @@ namespace TicketingSystem.Controllers
 {
     public class AccountController : BaseController
     {
-        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -24,9 +23,9 @@ namespace TicketingSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -41,27 +40,35 @@ namespace TicketingSystem.Controllers
                 LoginUser = user.Name;
                 UserID = user.UserID.ToString();
 
-                if (string.IsNullOrEmpty(returnUrl) == false)
-                    RedirectToLocal(returnUrl);
+                if (string.IsNullOrEmpty(returnUrl))
+                    return RedirectToAction("AllTickets", "Ticket");
+                else
+                    return Redirect(returnUrl);
             }
             else
             {
                 ModelState.AddModelError("Username", "Incorrect credentials.");
+                return View();
             }
-
-            return View();
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        public ActionResult ProfileInfo()
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            DB.User user = DB.User.Get(int.Parse(UserID));
+            return View(user);
+        }
+
+        public ActionResult EditProfile(int id)
+        {
+            DB.User user = DB.User.Get(int.Parse(UserID));
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(User user)
+        {
+            user.Update(user.UserID);
+            return RedirectToAction("ProfileInfo");
         }
 
         public ActionResult LogOff()
