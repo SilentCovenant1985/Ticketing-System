@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TicketingSystem.Database.Request>
+
+@{
+    ViewBag.Title = "Tickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllTicketsList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "EditTicket","Ticket")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            TrackingNumber
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+           Date Submitted
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            User
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackingNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InitialDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSubmitted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requester)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Create", new { id = item.RequestID}) 
+        </td>
+    </tr>
+}
+
+</table>

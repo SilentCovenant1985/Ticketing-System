@@ -23,6 +23,8 @@ namespace TicketingSystem.Database
             }
         }
 
+        public int UserID { get; set; }
+
         public string Username { get; set; }
 
         public string Password { get; set; }
@@ -53,8 +55,8 @@ namespace TicketingSystem.Database
             if (!IsValid())
                 return;
 
-            string sql = "INSERT INTO [dbo].[Users]([UserID],[Username],[Password],[Name],[Email],[Phone],[Company],[UserType])" +
-                         string.Format("VALUES({0}{1}{2}{3}{4}{5}{6}{7})", Username, Password, Name, Email, Phone, Company, UserType);
+            string sql = "INSERT INTO [dbo].[Users]([Username],[Password],[Name],[Email],[Phone],[Company],[UserType])" +
+                         string.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", Username, Password, Name, Email, Phone, Company, UserType);
 
             DBHelper.Execute(sql);
         }
@@ -78,11 +80,36 @@ namespace TicketingSystem.Database
         {
             string sql = string.Format("select * from Users where UserID = {0}", id);
             SqlDataReader reader = DBHelper.Query(sql);
+            User user = MapReaderToUser(reader);
 
+            return user;
+        }
+
+        public static User Get(string username)
+        {
+            string sql = string.Format("SELECT * FROM Users WHERE Username = '{0}'", username);
+            SqlDataReader reader = DBHelper.Query(sql);
+            User user = MapReaderToUser(reader);
+
+            return user;
+        }
+
+        public static User Get(string username, string password)
+        {
+            string sql = string.Format("SELECT * FROM Users WHERE Username = '{0}' AND Password = '{1}'", username,password);
+            SqlDataReader reader = DBHelper.Query(sql);
+            User user = MapReaderToUser(reader);
+
+            return user;
+        }
+
+        private static User MapReaderToUser(SqlDataReader reader)
+        {
             if (reader.Read() == false)
                 return null;
 
             User user = new User();
+            user.UserID = int.Parse(reader["UserId"].ToString());
             user.Username = reader["Username"].ToString();
             user.Password = reader["Password"].ToString();
             user.Name = reader["Name"].ToString();
@@ -92,6 +119,6 @@ namespace TicketingSystem.Database
             user.UserType = reader["UserType"].ToString();
 
             return user;
-        }
+        } 
     }
 }

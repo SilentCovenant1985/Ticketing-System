@@ -16,5 +16,15 @@ namespace TicketingSystem
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start(object sender, EventArgs args)
+        {
+            Session.Add("USER", "GUEST");
+        }
+
+        protected void Session_End(object sender, EventArgs args)
+        {
+            Session.Add("USER", "GUEST");
+        }
     }
 }

@@ -7,12 +7,14 @@ using TicketingSystem.Database;
 
 namespace TicketingSystem.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            User user = Database.User.Get(1);
-            return View(user);
+            if (LoginUser == "GUEST")
+                return View();
+            else
+                return RedirectToAction("AllTickets", "Ticket");
         }
 
         public ActionResult About()
